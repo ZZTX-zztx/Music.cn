@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易音乐播放界面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .music-container {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .music-cover {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+            /* 图片加载失败时显示边框提示 */
+            border: 2px solid transparent;
+        }
+        /* 图片加载失败样式 */
+        .music-cover[src$="Visions.jpg"]:error {
+            border-color: #e74c3c;
+            content: '';
+            background: rgba(231, 76, 60, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e74c3c;
+            font-size: 14px;
+        }
+        .music-container:hover .music-cover {
+            transform: scale(1.05);
+        }
+        .music-title {
+            font-size: 22px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .music-singer {
+            font-size: 16px;
+            color: #ddd;
+            margin-bottom: 25px;
+        }
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            margin-bottom: 25px;
+            cursor: pointer;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #3498db;
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #3498db;
+            border: none;
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            transition: background 0.3s ease;
+        }
+        .control-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="music-container">
+        <!-- 仅加载本地Visions.jpg，无备用图 -->
+        <img src="./Visions.jpg" alt="Visions音乐封面" class="music-cover">
+        
+        <h2 class="music-title">Visions</h2>
+        <p class="music-singer">未知艺术家</p>
+        
+        <audio id="audioPlayer" src="./Visions.mp3"></audio>
+        
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+        
+        <button class="control-btn" id="playBtn">▶</button>
+    </div>
+
+    <script src="./Visions.js"></script>
+</body>
+</html>
