@@ -1,0 +1,18 @@
+# Netlify 部署配置：将 ./home/zztx.html 设为默认首页
+[build]
+  # 发布目录："." 表示项目根目录（home/zztx.html文件夹在根目录下）
+  publish = "."
+  # 静态站点无需构建命令，留空即可
+  command = ""
+
+# 核心规则：访问根域名时，自动指向 home/zztx.html 文件夹下的 home/zztx.html
+[[redirects]]
+  from = "/"
+  to = "/home/zztx.html"
+  status = 200
+
+# 可选：SPA专用（访问任意子路径也指向 home/zztx.html，纯静态页面可省略）
+[[redirects]]
+  from = "/*"
+  to = "/home/zztx.html"
+  status = 200
